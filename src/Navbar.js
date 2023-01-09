@@ -9,7 +9,7 @@ const Navbar = (props) => {
           src="https://cdn-icons-png.flaticon.com/512/2838/2838838.png"
           alt="cart"
         />
-        <span style={styles.cartCount}>3</span>
+        <span style={styles.cartCount}>{props.count}</span>
       </div>
     </div>
   );
@@ -18,7 +18,7 @@ const Navbar = (props) => {
 const styles = {
   cartIcon: {
     height: 35,
-    marginRight: 20,
+    marginRight: 30,
   },
   nav: {
     height: 70,
@@ -33,9 +33,9 @@ const styles = {
   cartCount: {
     background: "yellow",
     borderRadius: "50%",
-    padding: "4px 8px",
+    padding: "2px 8px",
     position: "absolute",
-    right: 0,
+    right: 10,
     top: -9,
   },
 };

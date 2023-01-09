@@ -2,20 +2,19 @@ import React from "react";
 
 const CartItem = (props) => {
   const { product, onIncreaseQuantity, onDecreaseQuantity, onDelete } = props;
-  const { price, title, qty } = product;
+  const { price, title, qty, img } = product;
 
   return (
     <div className="cart-item">
       <div className="left-block">
         <img
-          src="https://i.ebayimg.com/images/g/-KYAAOSwRkpi0SZE/s-l500.jpg"
-          alt=""
+          src={img}
           style={styles.image}
         />
       </div>
       <div className="right-block">
         <div style={{ fontSize: 25 }}>{title}</div>
-        <div style={{ color: "#ccc" }}>Rs {price}</div>
+        <div style={{ color: "gray" }}>Rs {price}</div>
         <div style={{ color: "gray" }}>{qty}</div>
         <div className="cart-item-actions">
           <img
