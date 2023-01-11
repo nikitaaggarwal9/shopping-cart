@@ -1,35 +1,33 @@
 import React from "react";
 import Cart from "./Cart";
 import Navbar from "./Navbar";
+import { collection, getDocs } from "firebase/firestore";
+// import * as firebase from 'firebase'
+import {db} from './index'
 
 class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      products: [
-        {
-          price: 29999,
-          title: "Nothing Phone",
-          qty: 1,
-          img: "https://i.ebayimg.com/images/g/-KYAAOSwRkpi0SZE/s-l500.jpg",
-          id: 1,
-        },
-        {
-          price: 9999,
-          title: "Watch",
-          qty: 1,
-          img: "https://watchzilla.in/wp-content/uploads/2021/08/IMG-20220728-WA0047.jpg",
-          id: 2,
-        },
-        {
-          price: 59999,
-          title: "Laptop",
-          qty: 1,
-          img: "https://cdn.mos.cms.futurecdn.net/Sau6W3hnWTyGiNr3MsrTHf-1200-80.jpg",
-          id: 3,
-        },
-      ],
+      products: [],
     };
+  }
+
+  componentDidMount() {
+    console.log(db);
+    // firebase.firestore().collection('products').get().then((snapshot) => {
+    //   console.log(snapshot);
+    // })
+
+    getDocs(collection(db, "products")).then(snapshot =>{               
+      const products = snapshot.docs.map(doc => ({...doc.data(), id:doc.id }));
+      
+      this.setState({
+        products
+      })
+      console.log("products", products);
+    })
+
   }
 
   handleIncreaseQuantity = (product) => {
